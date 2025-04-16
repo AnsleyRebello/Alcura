@@ -1,0 +1,201 @@
+Disease,Speciality
+Common Cold,GP
+Flu,GP
+COVID-19,GP
+Diabetes Type 1,ENDO
+Diabetes Type 2,ENDO
+Hypertension,CARD
+Asthma,PULMO
+Pneumonia,PULMO
+Bronchitis,PULMO
+Depression,PSY
+Anxiety,PSY
+Bipolar Disorder,PSY
+Skin Rash,DERM
+Eczema,DERM
+Psoriasis,DERM
+Toothache,DENT
+Cavity,DENT
+Gingivitis,DENT
+Broken Arm,ORTHO
+Fractured Leg,ORTHO
+Dislocated Shoulder,ORTHO
+Cataract,OPHTHO
+Glaucoma,OPHTHO
+Macular Degeneration,OPHTHO
+Heart Attack,CARD
+Arrhythmia,CARD
+Congestive Heart Failure,CARD
+Arthritis,RHEUM
+Rheumatoid Arthritis,RHEUM
+Osteoarthritis,RHEUM
+Migraine,NEURO
+Seizures,NEURO
+Epilepsy,NEURO
+Ear Infection,ENT
+Sinusitis,ENT
+Tonsillitis,ENT
+Seasonal Allergies,ALLER
+Food Allergies,ALLER
+Drug Allergies,ALLER
+Gastritis,GASTRO
+Acid Reflux,GASTRO
+Irritable Bowel Syndrome,GASTRO
+Kidney Stones,NEPHRO
+Urinary Tract Infection,NEPHRO
+Chronic Kidney Disease,NEPHRO
+Breast Cancer,ONCO
+Lung Cancer,ONCO
+Prostate Cancer,ONCO
+Malaria,ID
+Tuberculosis,ID
+Hepatitis B,ID
+Obesity,ENDO
+Hypothyroidism,ENDO
+Hyperthyroidism,ENDO
+Menstrual Disorders,GYN
+Polycystic Ovary Syndrome,GYN
+Pregnancy,GYN
+Prostatitis,URO
+Urinary Incontinence,URO
+Erectile Dysfunction,URO
+Appendicitis,GSURG
+Gallstones,GSURG
+Hernia,GSURG
+Stroke,NEURO
+Parkinson's Disease,NEURO
+Multiple Sclerosis,NEURO
+Chickenpox,ID
+Measles,ID
+Mumps,ID
+Anemia,HEM
+Leukemia,HEM
+Lymphoma,HEM
+Acne,DERM
+Melanoma,DERM
+Vitiligo,DERM
+Chronic Fatigue Syndrome,GP
+Sleep Apnea,PULMO
+Insomnia,PSY
+Obstructive Sleep Apnea,PULMO
+Aortic Aneurysm,CARD
+Peripheral Artery Disease,CARD
+Gout,RHEUM
+Systemic Lupus Erythematosus,RHEUM
+Scleroderma,RHEUM
+Vertigo,ENT
+Meniere’s Disease,ENT
+Hearing Loss,ENT
+Colorectal Cancer,GASTRO
+Crohn’s Disease,GASTRO
+Ulcerative Colitis,GASTRO
+Nephrotic Syndrome,NEPHRO
+Bladder Cancer,URO
+Testicular Cancer,URO
+Thyroid Cancer,ENDO
+Cervical Cancer,GYN
+Ovarian Cancer,GYN
+Chlamydia,ID
+Gonorrhea,ID
+HIV/AIDS,ID
+Dengue Fever,ID
+Zika Virus,ID
+Ebola,ID
+Heat Stroke,EMERG
+Frostbite,EMERG
+Burns,EMERG
+Liver Cirrhosis,GASTRO
+Hepatitis C,GASTRO
+Pancreatitis,GASTRO
+ALS,NEURO
+Dystonia,NEURO
+Myasthenia Gravis,NEURO
+Scoliosis,ORTHO
+Osteoporosis,ORTHO
+Spinal Stenosis,ORTHO
+Conjunctivitis,OPHTHO
+Dry Eyes,OPHTHO
+Retinal Detachment,OPHTHO
+Prostate Enlargement,URO
+Hydronephrosis,URO
+Renal Cyst,URO
+Barrett’s Esophagus,GASTRO
+Peptic Ulcer,GASTRO
+Celiac Disease,GASTRO
+Pelvic Inflammatory Disease,GYN
+Endometriosis,GYN
+Ectopic Pregnancy,GYN
+Thrombocytopenia,HEM
+Hemophilia,HEM
+Sickle Cell Disease,HEM
+Oral Cancer,DENT
+Root Canal Infection,DENT
+Impacted Wisdom Teeth,DENT
+Scabies,DERM
+Ringworm,DERM
+Warts,DERM
+Tetanus,ID
+Rabies,ID
+Whooping Cough,ID
+Lung Fibrosis,PULMO
+Sarcoidosis,PULMO
+Chronic Obstructive Pulmonary Disease,PULMO
+Liver Cancer,ONCO
+Pancreatic Cancer,ONCO
+Brain Tumor,ONCO
+Heat Exhaustion,EMERG
+Hypothermia,EMERG
+Drowning,EMERG
+Dystonia,NEURO
+Pelvic Inflammatory Disease,GYN
+Celiac Disease,GASTRO
+Breast Cancer,ONCO
+Gallstones,GSURG
+Hernia,GSURG
+Crohn’s Disease,GASTRO
+Sleep Apnea,PULMO
+Rabies,ID
+Migraine,NEURO
+Impacted Wisdom Teeth,DENT
+ALS,NEURO
+Food Allergies,ALLER
+Peripheral Artery Disease,CARD
+Sickle Cell Disease,HEM
+Chronic Fatigue Syndrome,GP
+Vertigo,ENT
+Thrombocytopenia,HEM
+Macular Degeneration,OPHTHO
+Anxiety,PSY
+Prostate Enlargement,URO
+Obstructive Sleep Apnea,PULMO
+Endometriosis,GYN
+Hyperthyroidism,ENDO
+Leukemia,HEM
+Kidney Stones,NEPHRO
+Acne,DERM
+Psoriasis,DERM
+Renal Cyst,URO
+Congestive Heart Failure,CARD
+Toothache,DENT
+Seasonal Allergies,ALLER
+Lymphoma,HEM
+Scabies,DERM
+Hemophilia,HEM
+Melanoma,DERM
+Bipolar Disorder,PSY
+Insomnia,PSY
+Hypertension,CARD
+Diabetes Type 1,ENDO
+Ear Infection,ENT
+Spinal Stenosis,ORTHO
+Menstrual Disorders,GYN
+Cavity,DENT
+Measles,ID
+Ulcerative Colitis,GASTRO
+Cervical Cancer,GYN
+Arthritis,RHEUM
+Tetanus,ID
+Dry Eyes,OPHTHO
+Crohn’s Disease,GASTRO
+Crohn’s Disease,GASTRO
+Arrhythmia,CARD

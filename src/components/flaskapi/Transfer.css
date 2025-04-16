@@ -1,0 +1,57 @@
+.transfer-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.doctor-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.doctor-card:hover {
+    transform: scale(1.05);
+}
+
+.loading, .error, .no-data {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: gray;
+}
+.transfer-button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 12px 24px; /* Top-bottom, left-right padding */
+    border: none; /* No border */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    font-weight: bold;
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+}
+
+.transfer-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.transfer-button:active {
+    transform: scale(0.98); /* Click effect */
+}

@@ -5,8 +5,10 @@ import Chatbot from "./components/pages/Chatbot";
 import HealthAnalysis from "./components/pages/HealthAnalysis";
 import Medication from "./components/pages/Medication";
 import PieChart from "./components/flaskapi/PieChart";
-import Transfer from "./components/flaskapi/transfer";
+import Transfer from "./components/flaskapi/Transfer";
 import Appointment from "./components/flaskapi/Appointment";
+import FeedbackBarChart from "./components/flaskapi/FeedbackBarChart";
+import FeedbackForm from "./components/flaskapi/FeedbackForm";
 
 function App() {
   return (
@@ -35,6 +37,12 @@ function App() {
           <Link to="/doctor" className="flex items-center hover:text-teal-200">
             <FaChartBar className="mr-1" /> Doctor
           </Link>
+          {/* <Link to="/appointment" className="flex items-center hover:text-teal-200">
+            <FaChartBar className="mr-1" /> Appointment
+          </Link> */}
+          <Link to="/feedback" className="flex items-center hover:text-teal-200">
+            <FaChartBar className="mr-1" /> Feedback
+          </Link>
         </nav>
       </header> 
 
@@ -49,6 +57,9 @@ function App() {
           <Route path="/chart" element={<PieChart />} />
           <Route path="/doctor" element={<Transfer />} />
           <Route path="/appointment" element={<Appointment />} />
+          <Route path="/feedback" element={<FeedbackForm />} />
+          <Route path="/feedback-chart" element={<FeedbackBarChart />} />
+
         </Routes>
       </main>
       

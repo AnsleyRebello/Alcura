@@ -1,66 +1,74 @@
 import { useState } from "react";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { FaVirus, FaVenusMars, FaBirthdayCake, FaGlobeAmericas, FaPrescriptionBottleAlt } from 'react-icons/fa';
-// import tabletImage from '../../assets/tablet.png';
+import { FaVirus, FaVenusMars, FaBirthdayCake, FaGlobeAmericas, FaPrescriptionBottleAlt } from "react-icons/fa";
 
-function App() {
+function Medication() {
   const [loading, setLoading] = useState(false);
   const [apiData, setApiData] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
   const [country, setCountry] = useState("");
   const [disease, setDisease] = useState("");
-  const genAI = new GoogleGenerativeAI(
-    "AIzaSyCJGOZLj-k3K7ZIWZFMSkoWoSxfb7vSwP8"
-  );
 
-  const fetchData = async () => {
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-    const prompt = `You are a medical expert. Based on the following biodata: 
-    Age: ${age}, Gender: ${gender}, Country: ${country}, Disease: ${disease}, 
-    provide a detailed medication recommendation including dosage. give them within html with proper styling with tailwind css. write it as plain text without any markdown syntax.`;
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
-    setApiData(text);
-    setLoading(false);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    fetchData();
+
+    // Simulate API call
+    setTimeout(() => {
+      setApiData(`
+        <h2 class="text-xl font-bold text-indigo-700 mb-4">Recommended Medication</h2>
+        <ul class="list-disc pl-5">
+          <li><strong>Medication:</strong> Paracetamol 500mg</li>
+          <li><strong>Dosage:</strong> 1 tablet every 6 hours</li>
+          <li><strong>Duration:</strong> 5 days</li>
+          <li><strong>Precautions:</strong> Avoid alcohol and stay hydrated</li>
+        </ul>
+      `);
+      setLoading(false);
+    }, 2000);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 via-indigo-100 to-indigo-300">
-      <div className="w-[800px] max-w-4xl mx-auto my-4 p-5 sm:p-6 md:p-8 bg-white rounded-xl shadow-xl">
-        <h1 className="text-4xl font-extrabold text-center mb-6 text-indigo-700 tracking-tight drop-shadow-md">
-          Personalized Medication Recommendation
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-100 to-indigo-200 flex items-center justify-center">
+      <div className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-8 relative">
+        {/* Decorative Elements */}
+        <div className="absolute top-[-50px] right-[-50px] w-[150px] h-[150px] bg-indigo-200 rounded-full opacity-50"></div>
+        <div className="absolute bottom-[-50px] left-[-50px] w-[200px] h-[200px] bg-indigo-300 rounded-full opacity-50"></div>
+
+        <h1 className="text-3xl font-bold text-center text-indigo-700 mb-6">
+          Medication Recommendation
         </h1>
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
-          <div className="flex flex-col space-y-1">
-            <label htmlFor="disease" className="text-base font-semibold text-gray-900 flex items-center">
-              <FaVirus className="mr-2 text-indigo-500 text-xl" /> Disease
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Disease Input */}
+          <div>
+            <label htmlFor="disease" className="block text-sm font-medium text-gray-700 mb-2">
+              <FaVirus className="inline-block text-indigo-500 mr-2" />
+              Disease
             </label>
-            <input 
+            <input
               id="disease"
-              type="text" 
-              value={disease} 
-              onChange={(e) => setDisease(e.target.value)} 
-              placeholder="Enter disease" 
-              className="p-3 border-2 border-gray-200 rounded-lg focus:ring-3 focus:ring-indigo-400 focus:border-indigo-400 text-base transition duration-300 ease-in-out"
+              type="text"
+              value={disease}
+              onChange={(e) => setDisease(e.target.value)}
+              placeholder="Enter disease"
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+              required
             />
           </div>
-          <div className="flex flex-col space-y-1">
-            <label htmlFor="gender" className="text-base font-semibold text-gray-900 flex items-center">
-              <FaVenusMars className="mr-2 text-indigo-500 text-xl" /> Gender
+
+          {/* Gender Select */}
+          <div>
+            <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-2">
+              <FaVenusMars className="inline-block text-indigo-500 mr-2" />
+              Gender
             </label>
-            <select 
+            <select
               id="gender"
-              value={gender} 
-              onChange={(e) => setGender(e.target.value)} 
-              className="p-3 border-2 border-gray-200 rounded-lg focus:ring-3 focus:ring-indigo-400 focus:border-indigo-400 text-base transition duration-300 ease-in-out"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+              required
             >
               <option value="">Select Gender</option>
               <option value="Male">Male</option>
@@ -68,52 +76,68 @@ function App() {
               <option value="Other">Other</option>
             </select>
           </div>
-          <div className="flex flex-col space-y-1">
-            <label htmlFor="age" className="text-base font-semibold text-gray-900 flex items-center">
-              <FaBirthdayCake className="mr-2 text-indigo-500 text-xl" /> Age
+
+          {/* Age Input */}
+          <div>
+            <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-2">
+              <FaBirthdayCake className="inline-block text-indigo-500 mr-2" />
+              Age
             </label>
-            <input 
+            <input
               id="age"
-              type="text" 
-              value={age} 
-              onChange={(e) => setAge(e.target.value)} 
-              placeholder="Enter age" 
-              className="p-3 border-2 border-gray-200 rounded-lg focus:ring-3 focus:ring-indigo-400 focus:border-indigo-400 text-base transition duration-300 ease-in-out"
+              type="number"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              placeholder="Enter age"
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+              required
             />
           </div>
-          <div className="flex flex-col space-y-1">
-            <label htmlFor="country" className="text-base font-semibold text-gray-900 flex items-center">
-              <FaGlobeAmericas className="mr-2 text-indigo-500 text-xl" /> Country
+
+          {/* Country Input */}
+          <div>
+            <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
+              <FaGlobeAmericas className="inline-block text-indigo-500 mr-2" />
+              Country
             </label>
-            <input 
+            <input
               id="country"
-              type="text" 
-              value={country} 
-              onChange={(e) => setCountry(e.target.value)} 
-              placeholder="Enter country" 
-              className="p-3 border-2 border-gray-200 rounded-lg focus:ring-3 focus:ring-indigo-400 focus:border-indigo-400 text-base transition duration-300 ease-in-out"
+              type="text"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              placeholder="Enter country"
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+              required
             />
           </div>
-          <button 
-            type="submit" 
-            className="p-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-300 ease-in-out font-bold shadow-lg flex items-center justify-center transform hover:scale-105"
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-3 bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300"
           >
-            <FaPrescriptionBottleAlt className="mr-2 text-xl" /> Get Recommendation
+            <FaPrescriptionBottleAlt className="inline-block mr-2" />
+            Get Recommendation
           </button>
         </form>
-        {loading ? (
-          <div className="mt-8 flex justify-center items-center">
+
+        {/* Loading Spinner */}
+        {loading && (
+          <div className="mt-6 flex justify-center">
             <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-indigo-600"></div>
           </div>
-        ) : apiData ? (
-          <div 
-            className="mt-8 p-6 border-2 border-indigo-300 rounded-xl bg-white shadow-lg"
-            dangerouslySetInnerHTML={{ __html: apiData.replace(/|/g, '') }}
+        )}
+
+        {/* API Data Display */}
+        {!loading && apiData && (
+          <div
+            className="mt-6 p-4 bg-indigo-50 border border-indigo-300 rounded-lg shadow-sm"
+            dangerouslySetInnerHTML={{ __html: apiData }}
           />
-        ) : null}
+        )}
       </div>
     </div>
   );
 }
 
-export default App;
+export default Medication;

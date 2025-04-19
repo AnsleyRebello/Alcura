@@ -1,57 +1,106 @@
+/* Container Styling */
 .transfer-container {
-    padding: 20px;
+    padding: 40px;
     text-align: center;
+    background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
 }
 
+/* Title Styling */
 .title {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #4a148c;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Cards Container */
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
 }
 
+/* Doctor Card Styling */
 .doctor-card {
-    background-color: #f9f9f9;
+    background: linear-gradient(135deg, #ffffff, #f3e5f5);
     border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 20px;
-    width: 250px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    border-radius: 16px;
+    padding: 25px;
+    width: 280px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left;
+    position: relative;
 }
 
 .doctor-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-.loading, .error, .no-data {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: gray;
-}
-.transfer-button {
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
-    padding: 12px 24px; /* Top-bottom, left-right padding */
-    border: none; /* No border */
-    border-radius: 8px; /* Rounded corners */
-    font-size: 16px; /* Font size */
+/* Doctor Card Content */
+.doctor-card h2 {
+    font-size: 1.5rem;
     font-weight: bold;
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s, transform 0.2s;
-    margin-top: 10px;
+    color: #6a1b9a;
+    margin-bottom: 10px;
+}
+
+.doctor-card p {
+    font-size: 1rem;
+    color: #4e4e4e;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.doctor-card p strong {
+    color: #6a1b9a;
+}
+
+/* Button Styling */
+.transfer-button {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
 }
 
 .transfer-button:hover {
-    background-color: #45a049; /* Darker green on hover */
-    transform: scale(1.05); /* Slight zoom on hover */
+    background: linear-gradient(135deg, #45a049, #388e3c);
+    transform: scale(1.05);
 }
 
 .transfer-button:active {
-    transform: scale(0.98); /* Click effect */
+    transform: scale(0.98);
+}
+
+/* Loading, Error, and No Data Messages */
+.loading, .error, .no-data {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #616161;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .doctor-card {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
 }

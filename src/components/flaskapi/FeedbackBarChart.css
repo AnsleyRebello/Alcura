@@ -1,0 +1,48 @@
+/* Container styling */
+.bar-chart-container {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 800px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Title styling */
+.bar-chart-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #4caf50;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Chart responsiveness */
+.bar-chart-container canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Hover effect for the container */
+.bar-chart-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .bar-chart-container {
+    padding: 15px;
+  }
+
+  .bar-chart-title {
+    font-size: 20px;
+  }
+}

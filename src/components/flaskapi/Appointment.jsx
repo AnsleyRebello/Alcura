@@ -8,7 +8,6 @@ function Appointment() {
     const navigate = useNavigate();
     const doctor = location.state?.doctor;
 
-    // Redirect to Transfer page if doctor data is missing
     if (!doctor) {
         alert("No doctor details available. Redirecting to the Doctors Directory.");
         navigate("/");
@@ -24,13 +23,13 @@ function Appointment() {
         doctorName: doctor.name,
         patient_name: "",
         patient_no: "",
+        email: "",  // NEW FIELD
     });
 
-    // Fetch appointments for the doctor
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                setLoading(true);
+                setLoading(true); 
                 const response = await axios.get(`http://localhost:5000/api/appoint?doctor=${doctor.name}`);
                 setAppointments(response.data);
             } catch (err) {
@@ -58,10 +57,17 @@ function Appointment() {
                 time: formData.time,
                 patient_name: formData.patient_name,
                 patient_no: formData.patient_no,
+                email: formData.email,  
             });
             alert(response.data.message || "Appointment added successfully!");
-            setFormData({ date: "", time: "", doctorName: doctor.name , patient_name: "", patient_no: "" });
-            // Refresh appointments after adding a new one
+            setFormData({
+                date: "",
+                time: "",
+                doctorName: doctor.name,
+                patient_name: "",
+                patient_no: "",
+                email: "",
+            });
             const updatedAppointments = await axios.get(`http://localhost:5000/api/appoint?doctor=${doctor.name}`);
             setAppointments(updatedAppointments.data);
         } catch (err) {
@@ -85,12 +91,12 @@ function Appointment() {
                 <div className="appointments-list">
                     {appointments.map((appointment) => (
                         <div className="appointment-card" key={appointment.id}>
-                        <p><strong>Date:</strong> {appointment.appointment_date}</p>
-                        <p><strong>Time:</strong> {appointment.appointment_time}</p>
-                        <p><strong>Doctor Name:</strong> {appointment.name}</p>
-                        <p><strong>Patient</strong> {appointment.patient_name}</p>
-                        <p><strong>Mobile-no:</strong> {appointment.patient_no}</p>
-                    </div>
+                            <p><strong>Date:</strong> {appointment.appointment_date}</p>
+                            <p><strong>Time:</strong> {appointment.appointment_time}</p>
+                            <p><strong>Doctor Name:</strong> {appointment.name}</p>
+                            <p><strong>Patient:</strong> {appointment.patient_name}</p>
+                            <p><strong>Patient No:</strong> {appointment.patient_no}</p>
+                        </div>
                     ))}
                 </div>
             )}
@@ -125,6 +131,17 @@ function Appointment() {
                         id="patient_no"
                         name="patient_no"
                         value={formData.patient_no}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
                         onChange={handleChange}
                         required
                     />

@@ -1,0 +1,154 @@
+/* Container styling */
+.feedback-form-container {
+  margin: 20px auto;
+  padding: 30px;
+  max-width: 600px;
+  background: linear-gradient(135deg, #e3f2fd, #e1bee7);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative Background Elements */
+.feedback-form-container::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.feedback-form-container::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* Title styling */
+.feedback-form-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #4a148c;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  position: relative;
+}
+
+/* Success/Error message styling */
+.feedback-message {
+  color: #388e3c;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+  z-index: 1;
+  position: relative;
+}
+
+.feedback-message.error {
+  color: #d32f2f;
+}
+
+/* Form styling */
+.feedback-form {
+  z-index: 1;
+  position: relative;
+}
+
+.feedback-form .form-group {
+  margin-bottom: 20px;
+}
+
+.feedback-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.feedback-form input,
+.feedback-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+}
+
+.feedback-form input:focus,
+.feedback-form select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+}
+
+/* Submit button styling */
+.feedback-form .submit-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.feedback-form .submit-button:hover {
+  background: linear-gradient(135deg, #45a049, #388e3c);
+  transform: scale(1.05);
+}
+
+.feedback-form .submit-button:active {
+  transform: scale(0.98);
+}
+
+/* Decorative Image/Icon Styling */
+.feedback-form-container .form-icon {
+  display: block;
+  margin: 0 auto 20px;
+  width: 80px;
+  height: 80px;
+  background: url('/src/assets/feedback-icon.png') no-repeat center center;
+  background-size: contain;
+  z-index: 1;
+  position: relative;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .feedback-form-container {
+    padding: 20px;
+  }
+
+  .feedback-form-title {
+    font-size: 24px;
+  }
+
+  .feedback-form input,
+  .feedback-form select {
+    font-size: 13px;
+  }
+
+  .feedback-form .submit-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

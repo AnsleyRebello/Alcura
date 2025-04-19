@@ -65,7 +65,32 @@ const Home = () => {
             <p className="mb-4 text-purple-800 text-center">Receive personalized medication recommendations and dosage information.</p>
             <Link to="/medication" className="block w-full bg-purple-400 text-white text-center py-3 rounded-lg hover:bg-purple-500 transition duration-300">Get Recommendations</Link>
           </div>
-        </div>
+
+          {/* Doctor Availability Section */}
+          <div className="bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+            <div className="flex items-center justify-center mb-4">
+              <img src={analysisImage} alt="Doctor" className="w-16 h-16 rounded-full mr-4" />
+              <FaChartBar className="text-4xl text-indigo-400" />
+            </div>
+            <h3 className="text-2xl font-bold mb-2 text-center text-indigo-600">Doctor Availability</h3>
+            <p className="mb-4 text-indigo-800 text-center">Check available doctors based on your analysis and book an appointment.</p>
+            <Link to="/doctor" className="block w-full bg-indigo-400 text-white text-center py-3 rounded-lg hover:bg-indigo-500 transition duration-300">View Doctors</Link>
+            </div>
+
+          {/* Doctor Feedback Section */}
+          <div className="bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+            <div className="flex items-center justify-center mb-4">
+              <img src={analysisImage} alt="Doctor" className="w-16 h-16 rounded-full mr-4" />
+              <FaChartBar className="text-4xl text-orange-400" />
+            </div>
+            <h3 className="text-2xl font-bold mb-2 text-center text-orange-600">Doctor Feedback</h3>
+            <p className="mb-4 text-orange-800 text-center">Rate your doctor and view feedback statistics based on patient reviews.</p>
+            <Link to="/feedback-chart" className="block w-full bg-orange-400 text-white text-center py-3 rounded-lg hover:bg-orange-500 transition duration-300">View BarChart</Link>
+            </div>
+    </div>
+
+
+  
       </main>
     </div>
   );

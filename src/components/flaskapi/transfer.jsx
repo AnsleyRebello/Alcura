@@ -40,7 +40,7 @@ function Transfer() {
 
             {error && <p className="error">An error occurred: {error}. Please try again later.</p>}
             {loading ? (
-                <p className="loading">Fetching doctors' data. Please wait...</p>
+                <p className="loading">Fetching doctor data. Please wait...</p>
             ) : data && data.length > 0 ? (
                 <div className="cards-container">
                     {data.map((doctor, index) => (
@@ -48,8 +48,13 @@ function Transfer() {
                             <h2>{doctor.name || "Unknown Name"}</h2>
                             <p><strong>Phone:</strong> {doctor.phone_num || "N/A"}</p>
                             <p><strong>Hospital:</strong> {doctor.hosp || "N/A"}</p>
-                            <p><strong>Specialty:</strong> {doctor.spec || "N/A"}</p>
+                            <p><strong>Specialization:</strong> {doctor.spec || "N/A"}</p>
                             <p><strong>Disease:</strong> {doctor.disease || "N/A"}</p>
+                            <p><strong>Email:</strong> {doctor.email || "N/A"}</p>
+                            <p><strong>Experience:</strong> {doctor.experience || "N/A"} years</p>
+                            <p><strong>Availability:</strong> {doctor.availability || "N/A"}</p>
+                            <p><strong>Consultation Fee:</strong> ₹{doctor.consultation_fee || "N/A"}</p>
+                            <p><strong>Rating:</strong> {doctor.rating || "N/A"} / 5</p>
                             <button
                                 className="transfer-button"
                                 onClick={() => Appointment(doctor)}

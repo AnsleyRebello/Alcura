@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import axios from "axios"; // this does the job of fetching data from the backend
+import axios from "axios";
+import './PieChart.css'; // Import the CSS file
 
 // Register chart components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = () => {
-  const [data, setData] = useState({ // this usestate is used to set the data for the chart
-    labels: [], // this is the labels for the chart
-    datasets: [  // this is the datasets for the chart
+  const [data, setData] = useState({
+    labels: [],
+    datasets: [
       {
-        label: "Number of Appointments", // this is the label for the chart
-        data: [],  // this is the data for the chart
+        label: "Number of Patients Consulted",
+        data: [],
         backgroundColor: [
           "rgba(255, 99, 132, 0.7)",
           "rgba(54, 162, 235, 0.7)",
@@ -42,23 +43,20 @@ const PieChart = () => {
     },
   };
 
-  // Fetch data from the backend
-  useEffect(() => { // the useeffect hook is used to fetch data from the backend when the component mounts
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/doctor-appointments");
         const fetchedData = response.data;
 
-        // Extract labels (doctor names) and data (appointment counts)
         const labels = fetchedData.map((item) => item.name);
         const appointmentCounts = fetchedData.map((item) => item.appointment_count);
 
-        // Update chart data
         setData({
           labels: labels,
           datasets: [
             {
-              label: "Number of Appointments",
+              label: "Number of Patients Consulted",
               data: appointmentCounts,
               backgroundColor: [
                 "rgba(255, 99, 132, 0.7)",
@@ -83,9 +81,12 @@ const PieChart = () => {
   }, []);
 
   return (
-    <div style={{ width: "400px", margin: "0 auto" }}>
+    <div className="pie-chart-container">
+      <h2 className="pie-chart-title">Appointments Overview</h2>
       {error && <p className="error">{error}</p>}
-      <Pie data={data} options={options} />
+      <div className="pie-chart-wrapper">
+        <Pie data={data} options={options} />
+      </div>
     </div>
   );
 };

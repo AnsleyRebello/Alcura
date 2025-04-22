@@ -114,5 +114,3 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ### Medication Guide
 ![Medication Guide](/Screenshot%202024-11-16%20111927.png)
 
-### Credits
-This project was built in collaboration with [Alister Fernandes](https://github.com/Alister1210).

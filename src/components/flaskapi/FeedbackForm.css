@@ -152,3 +152,45 @@
     padding: 10px;
   }
 }
+
+/* Success Prompt Styling */
+.success-prompt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.prompt-content {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.prompt-content p {
+  font-size: 18px;
+  color: #4caf50;
+  margin-bottom: 15px;
+}
+
+.close-prompt-button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.close-prompt-button:hover {
+  background: #45a049;
+}

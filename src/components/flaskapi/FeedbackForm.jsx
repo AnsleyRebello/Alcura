@@ -10,6 +10,7 @@ const FeedbackForm = () => {
     rating: "",
   });
   const [message, setMessage] = useState("");
+  const [showPrompt, setShowPrompt] = useState(false); // State to control the success prompt
 
   useEffect(() => {
     // Fetch the updated list of doctors from the database
@@ -34,12 +35,14 @@ const FeedbackForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:5000/api/feedback", formData);
       setMessage(response.data.message || "Feedback submitted successfully!");
       setFormData({ doctor_name: "", patient_no: "", rating: "" });
+      setShowPrompt(true); // Show the success prompt
 
       // Re-fetch the updated list of doctors after feedback submission
       const updatedDoctors = await axios.get("http://localhost:5000/api/doctor-appointments", {
@@ -52,6 +55,10 @@ const FeedbackForm = () => {
       console.error("Error submitting feedback:", err);
       setMessage("Failed to submit feedback. Please try again.");
     }
+  };
+
+  const closePrompt = () => {
+    setShowPrompt(false); // Close the success prompt
   };
 
   return (
@@ -106,6 +113,18 @@ const FeedbackForm = () => {
           Submit Feedback
         </button>
       </form>
+
+      {/* Success Prompt */}
+      {showPrompt && (
+        <div className="success-prompt">
+          <div className="prompt-content">
+            <p>Feedback submitted successfully!</p>
+            <button onClick={closePrompt} className="close-prompt-button">
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

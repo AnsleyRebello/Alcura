@@ -7,12 +7,11 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-
 app = Flask(__name__)
-CORS(app)  # Enable CORS for frontend requests
+CORS(app)
 
 # PostgreSQL configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:almighty101@localhost/sem6' # this does the work of connecting to the database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:almighty101@localhost/sem6'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -27,27 +26,23 @@ def index():
     except Exception as e:
         return f"⚠️ Connected to database, but error accessing 'mini6': {e}"
 
-@app.route('/api/data', methods=['GET'])
+@app.route('/api/data', methods=['GET']) 
 def get_data():
     try:
         query = text("SELECT * FROM mini6")
         result = db.session.execute(query).fetchall()
-
         if not result:
             return jsonify({"error": "No doctors found"}), 404
-
         data = [dict(row._mapping) for row in result]
         return jsonify(data)
-
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/appoint', methods=['GET'])
 def get_appoint():
     try:
-        doctor_name = request.args.get('doctor')  # Get doctor name from query params
+        doctor_name = request.args.get('doctor')
         if doctor_name:
-            # Use the correct column name 'name' in the query
             query = text("SELECT * FROM appoint WHERE name = :name")
             result = db.session.execute(query, {'name': doctor_name}).fetchall()
         else:
@@ -56,21 +51,19 @@ def get_appoint():
 
         if not result:
             return jsonify({"error": "No appointments found"}), 404
-        
-        # Convert the result to a list of dictionaries and serialize time/date fields
+
         data = []
         for row in result:
             row_dict = dict(row._mapping)
-            row_dict['appointment_time'] = row_dict['appointment_time'].strftime('%H:%M:%S')  # Convert time to string
-            row_dict['appointment_date'] = row_dict['appointment_date'].strftime('%Y-%m-%d')  # Convert date to string
+            row_dict['appointment_time'] = row_dict['appointment_time'].strftime('%H:%M:%S')
+            row_dict['appointment_date'] = row_dict['appointment_date'].strftime('%Y-%m-%d')
             data.append(row_dict)
 
         return jsonify(data)
-    
+
     except Exception as e:
-        print(f"Error in GET /api/appoint: {e}")  # Log the error for debugging
+        print(f"Error in GET /api/appoint: {e}")
         return jsonify({"error": str(e)}), 500
-    
 
 @app.route('/api/appoint', methods=['POST'])
 def post_appoint():
@@ -81,12 +74,15 @@ def post_appoint():
         appointment_time = data.get('time')
         patient_name = data.get('patient_name')
         patient_no = data.get('patient_no')
-        email = data.get('email')  # NEW FIELD
+        email = data.get('email')
 
         if not name or not appointment_date or not appointment_time:
             return jsonify({"error": "Name, date, and time are required fields."}), 400
 
-        query = text("INSERT INTO appoint (name, appointment_date, appointment_time, patient_name, patient_no) VALUES (:name, :appointment_date, :appointment_time, :patient_name, :patient_no)")
+        query = text("""
+            INSERT INTO appoint (name, appointment_date, appointment_time, patient_name, patient_no)
+            VALUES (:name, :appointment_date, :appointment_time, :patient_name, :patient_no)
+        """)
         db.session.execute(query, {
             'name': name,
             'appointment_date': appointment_date,
@@ -103,7 +99,6 @@ def post_appoint():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
 @app.route('/api/appoint/<int:id>', methods=['DELETE'])
 def delete_appoint(id):
     try:
@@ -118,11 +113,10 @@ def delete_appoint(id):
         return jsonify({"message": "Appointment deleted successfully"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-    
+
 @app.route('/api/doctor-appointments', methods=['GET'])
 def get_doctor_appointments():
     try:
-        # Query to count the number of appointments for each doctor
         query = text("""
             SELECT name, COUNT(*) as appointment_count
             FROM appoint
@@ -133,12 +127,11 @@ def get_doctor_appointments():
         if not result:
             return jsonify({"error": "No doctors or appointments found"}), 404
 
-        # Convert the result to a list of dictionaries
         data = [dict(row._mapping) for row in result]
         return jsonify(data)
 
     except Exception as e:
-        print(f"Error in GET /api/doctor-appointments: {e}")  # Log the error for debugging
+        print(f"Error in GET /api/doctor-appointments: {e}")
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/feedback', methods=['POST'])
@@ -149,18 +142,22 @@ def submit_feedback():
         patient_no = data.get('patient_no')
         rating = data.get('rating')
 
-        # Validate input
         if not doctor_name or not patient_no or not rating:
             return jsonify({"error": "Doctor name, patient number, and rating are required"}), 400
 
-        # Check if the patient number exists in the appointments table
-        appointment_query = text("SELECT * FROM appoint WHERE patient_no = :patient_no")
-        appointment_result = db.session.execute(appointment_query, {'patient_no': patient_no}).fetchone()
+        # ✅ Match both patient number AND doctor name
+        appointment_query = text("""
+            SELECT * FROM appoint
+            WHERE patient_no = :patient_no AND name = :doctor_name
+        """)
+        appointment_result = db.session.execute(appointment_query, {
+            'patient_no': patient_no,
+            'doctor_name': doctor_name
+        }).fetchone()
 
         if not appointment_result:
-            return jsonify({"error": "Invalid patient number"}), 400
+            return jsonify({"error": "Invalid patient number for the selected doctor"}), 400
 
-        # Insert feedback into the database
         feedback_query = text("""
             INSERT INTO feedback (doctor_name, patient_no, rating)
             VALUES (:doctor_name, :patient_no, :rating)
@@ -186,8 +183,6 @@ def get_feedback_data():
             GROUP BY doctor_name, rating
         """)
         result = db.session.execute(query).fetchall()
-
-        # Convert the result to a list of dictionaries
         data = [dict(row._mapping) for row in result]
         return jsonify(data)
     except Exception as e:
@@ -223,9 +218,5 @@ def send_confirmation_email(to_email, doctor, date, time):
     except Exception as e:
         print("❌ Email error:", e)
 
-
-
-
-    
 if __name__ == '__main__':
     app.run(debug=True)

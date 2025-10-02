@@ -47,14 +47,19 @@ const Home = () => {
           </div>
 
           <div className="bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-            <div className="flex items-center justify-center mb-4">
-              <img src={analysisImage} alt="Analysis" className="w-16 h-16 rounded-full mr-4" />
-              <FaChartBar className="text-4xl text-green-400" />
-            </div>
-            <h3 className="text-2xl font-bold mb-2 text-center text-green-600">Doctor Analysis</h3>
-            <p className="mb-4 text-green-800 text-center">Get a comprehensive analysis of your health based on your symptoms.</p>
-            <Link to="/chart" className="block w-full bg-green-400 text-white text-center py-3 rounded-lg hover:bg-green-500 transition duration-300">View PieChart</Link> {/* Add this button */}
-          </div>
+  <div className="flex items-center justify-center mb-4">
+    <img src={analysisImage} alt="Analysis" className="w-16 h-16 rounded-full mr-4" />
+    <FaChartBar className="text-4xl text-teal-400" />
+  </div>
+  <h3 className="text-2xl font-bold mb-2 text-center text-teal-600">Analysis PieChart</h3>
+  <p className="mb-4 text-teal-800 text-center">Get a comprehensive analysis graph based on your symptoms.</p>
+  <Link
+    to="/chart"
+    className="block w-full bg-teal-400 text-white text-center py-3 rounded-lg hover:bg-teal-500 transition duration-300"
+  >
+    View PieChart
+  </Link>
+</div>
 
           <div className="bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
             <div className="flex items-center justify-center mb-4">
